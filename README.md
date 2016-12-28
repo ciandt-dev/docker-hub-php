@@ -290,6 +290,9 @@ RUN apt-get update \
                 --assume-yes \
                 make
 
+# defines Composer version
+ENV COMPOSER_VERSION 1.2.1
+
 # defines Drush version
 ENV DRUSH_VERSION 8.1.3
 
