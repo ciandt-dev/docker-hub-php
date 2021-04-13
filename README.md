@@ -150,8 +150,8 @@ RUN apt-get update \
                 make
 
 # defines Composer and Drush versions
-ENV COMPOSER_VERSION 1.2.1
-ENV DRUSH_VERSION 8.1.3
+ENV COMPOSER_VERSION 2.0.12
+ENV DRUSH_VERSION 8.4.2
 
 # installs Drush
 RUN cd /root/ciandt \
@@ -191,8 +191,8 @@ RUN apt-get update \
                 make
 
 # defines Composer and Drush versions
-ENV COMPOSER_VERSION 1.2.1
-ENV DRUSH_VERSION 8.1.3
+ENV COMPOSER_VERSION 2.0.12
+ENV DRUSH_VERSION 8.4.2
 
 # installs Drush
 RUN cd /root/ciandt \
