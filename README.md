@@ -59,7 +59,7 @@ __*Deprecated*__
 __*Download the image*__
 
 ```
-docker pull ciandt/php:__acquia-2020-02-02-php7.3__
+docker pull ciandt/php:acquia-2020-02-02-php7.3
 ```
 
 __*Run a container*__
@@ -68,7 +68,7 @@ __*Run a container*__
 docker run \
   --name myContainer \
   --detach \
-  ciandt/php:__acquia-2020-02-02-php7.3__
+  ciandt/php:acquia-2020-02-02-php7.3
 ```
 
 __*Check running containers*__
@@ -85,7 +85,7 @@ If you just need the container there is a snippet that can help running in stand
 
 ```
 # define variables
-DOCKER_IMAGE_VERSION="__acquia-2020-02-02-php7.3__" # Update according which version you need.
+DOCKER_IMAGE_VERSION="acquia-2020-02-02-php7.3" # Update according which version you need.
 HOST_CODE_FOLDER=""${HOME}"/workspace/mySite"
 HOST_FILES_FOLDER=""${HOME}"/workspace/myNFSstorage"
 DOCKER_CONTAINER_NAME="myContainer"
@@ -142,7 +142,7 @@ Just to give an quick example, you can create your own Docker image based on thi
 
 ```
 # Insert here your target image
-FROM ciandt/php:__acquia-2020-02-02-php7.3__
+FROM ciandt/php:acquia-2020-02-02-php7.3
 
 # installs required package
 RUN apt-get update \
@@ -184,7 +184,7 @@ VIRTUAL_HOST=mySite.local
 
 ```
 # Insert here your target image
-FROM ciandt/php:__acquia-2020-02-02-php7.3__
+FROM ciandt/php:acquia-2020-02-02-php7.3
 
 # installs required package
 RUN apt-get update \
