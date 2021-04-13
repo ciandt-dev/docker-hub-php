@@ -49,6 +49,12 @@ These are the currently software versions bundled in the image(s) by tag.
 
 __*Deprecated*__
 
+* acquia-2019-09-09-php7.2
+* acquia-2017-01-13
+* acquia-2017-01-11
+* acquia-2016-12-28
+* acquia-2016-12-16
+* acquia-2016-11-30
 * acquia-2016-11-25
 * acquia-2016-11-14
 
@@ -85,7 +91,7 @@ If you just need the container there is a snippet that can help running in stand
 
 ```
 # define variables
-DOCKER_IMAGE_VERSION="acquia-2020-02-02-php7.3" # Update according which version you need.
+DOCKER_IMAGE_VERSION="2020-02-02-php7.3" # Update according which version you need.
 HOST_CODE_FOLDER=""${HOME}"/workspace/mySite"
 HOST_FILES_FOLDER=""${HOME}"/workspace/myNFSstorage"
 DOCKER_CONTAINER_NAME="myContainer"
