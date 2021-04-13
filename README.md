@@ -14,7 +14,7 @@ Our intent is to be a Docker container that mimics PHP/Apache running on Acquia 
 
 Acquia publishes a table with its platform infrastructure information on the link: https://docs.acquia.com/cloud-platform/arch/tech-platform
 
-These images will have the following name pattern: __acquia-*YYYY-MM-DD-php{Major version}*__ (For example: *acquia-2020-02-02-php7.3*)
+These images will have the following name pattern: __acquia-*YYYY-MM-DD-php{Major version}*__ (For example: __acquia-2020-02-02-php7.3__)
 
 #### [*Bundled software versions*](#software-versions)
 
@@ -59,7 +59,7 @@ __*Deprecated*__
 __*Download the image*__
 
 ```
-docker pull ciandt/php:acquia-YYYY-MM-DD-php{Major version}
+docker pull ciandt/php:__acquia-2020-02-02-php7.3__
 ```
 
 __*Run a container*__
@@ -68,7 +68,7 @@ __*Run a container*__
 docker run \
   --name myContainer \
   --detach \
-  ciandt/php:acquia-YYYY-MM-DD-php{Major version}
+  ciandt/php:__acquia-2020-02-02-php7.3__
 ```
 
 __*Check running containers*__
@@ -85,10 +85,11 @@ If you just need the container there is a snippet that can help running in stand
 
 ```
 # define variables
+DOCKER_IMAGE_VERSION="__acquia-2020-02-02-php7.3__" # Update according which version you need.
 HOST_CODE_FOLDER=""${HOME}"/workspace/mySite"
 HOST_FILES_FOLDER=""${HOME}"/workspace/myNFSstorage"
 DOCKER_CONTAINER_NAME="myContainer"
-DOCKER_IMAGE="ciandt/php:acquia-acquia-YYYY-MM-DD-php{Major version}"
+DOCKER_IMAGE="ciandt/php:acquia-${DOCKER_IMAGE_VERSION}"
 
 # run your container
 docker run \
@@ -140,7 +141,8 @@ All scripts are located inside folder __/root/ciandt__ and must be declared in t
 Just to give an quick example, you can create your own Docker image based on this one that already ships Drush installed as well. A Dockerfile performing it could be like:
 
 ```
-FROM ciandt/php:acquia-YYYY-MM-DD-php{Major version}
+# Insert here your target image
+FROM ciandt/php:__acquia-2020-02-02-php7.3__
 
 # installs required package
 RUN apt-get update \
@@ -181,7 +183,8 @@ VIRTUAL_HOST=mySite.local
 ##### [__app/php/Dockerfile__](#dockerfile)
 
 ```
-FROM ciandt/php:acquia-YYYY-MM-DD-php{Major version}
+# Insert here your target image
+FROM ciandt/php:__acquia-2020-02-02-php7.3__
 
 # installs required package
 RUN apt-get update \
