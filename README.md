@@ -12,37 +12,34 @@ At this moment we have the following version(s).
 
 Our intent is to be a Docker container that mimics PHP/Apache running on Acquia environment with the same version of softwares, packages, modules and its underlying operating system.
 
-Acquia publishes a table with its platform infrastructure information on the link: https://docs.acquia.com/cloud/arch/tech-platform
+Acquia publishes a table with its platform infrastructure information on the link: https://docs.acquia.com/cloud-platform/arch/tech-platform
 
-These images will have the following name pattern: __acquia-*YYYY-MM-DD*__
+These images will have the following name pattern: __acquia-*YYYY-MM-DD-php{Major version}*__ (For example: __acquia-2021-04-12-php7.4__)
 
 #### [*Bundled software versions*](#software-versions)
 
 These are the currently software versions bundled in the image(s) by tag.
 
-* acquia-latest __OR__ acquia-2016-11-30
-  * Ubuntu 12.04.5
-  * Apache 2.2.22
-  * PHP 5.6.28 (plus extensions)
-    * APCu 4.0.10
+* acquia
+  * Ubuntu 16.04-LTS
+  * Apache 2.4.18
+  * PHP 7.4.15 (plus extensions)
+    * APCu 5.1.19
     * Gnupg 1.4.0
-    * HTTP 2.5.6
-    * Igbinary 1.2.1
-    * Imagick 3.4.3RC1
-    * Memcache 3.0.8
-    * Mongo 1.6.14
-    * Oauth 1.2.3
-    * Propro 1.0.2
-    * Raphf 1.1.2
-    * SSH2 0.12
-    * Upload Progress 1.0.3.1
-    * Xdebug 2.4.1
-    * Xhprof 0.9.4
-    * YAML 1.3.0
+    * HTTP 3.2.4
+    * Igbinary 3.2.1
+    * Imagick 3.4.4
+    * Memcache 3.1.5
+    * Oauth 2.0.7
+    * Propro 2.1.0
+    * Raphf 2.0.1
+    * SSH2 1.2beta
+    * Xdebug 3.0.4
+    * YAML 2.2.1
   * Dumb-init 1.2.0
   * __Pre-loaded scripts for customization__
-    * Composer 1.2.1
-    * Drush 8.1.3
+    * Composer 2.0.12
+    * Drush 8.4.2
     * Grunt CLI 1.2.0
       * Compass 1.1.1
     * Node.js 0.10.37
@@ -52,6 +49,13 @@ These are the currently software versions bundled in the image(s) by tag.
 
 __*Deprecated*__
 
+* acquia-2020-02-02-php7.3
+* acquia-2019-09-09-php7.2
+* acquia-2017-01-13
+* acquia-2017-01-11
+* acquia-2016-12-28
+* acquia-2016-12-16
+* acquia-2016-11-30
 * acquia-2016-11-25
 * acquia-2016-11-14
 
@@ -62,7 +66,7 @@ __*Deprecated*__
 __*Download the image*__
 
 ```
-docker pull ciandt/php:acquia-latest
+docker pull ciandt/php:acquia-2021-04-12-php7.4
 ```
 
 __*Run a container*__
@@ -71,7 +75,7 @@ __*Run a container*__
 docker run \
   --name myContainer \
   --detach \
-  ciandt/php:acquia-latest
+  ciandt/php:acquia-2021-04-12-php7.4
 ```
 
 __*Check running containers*__
@@ -88,10 +92,11 @@ If you just need the container there is a snippet that can help running in stand
 
 ```
 # define variables
+DOCKER_IMAGE_VERSION="2021-04-12-php7.4" # Update according which version you need.
 HOST_CODE_FOLDER=""${HOME}"/workspace/mySite"
 HOST_FILES_FOLDER=""${HOME}"/workspace/myNFSstorage"
 DOCKER_CONTAINER_NAME="myContainer"
-DOCKER_IMAGE="ciandt/php:acquia-latest"
+DOCKER_IMAGE="ciandt/php:acquia-${DOCKER_IMAGE_VERSION}"
 
 # run your container
 docker run \
@@ -143,7 +148,8 @@ All scripts are located inside folder __/root/ciandt__ and must be declared in t
 Just to give an quick example, you can create your own Docker image based on this one that already ships Drush installed as well. A Dockerfile performing it could be like:
 
 ```
-FROM ciandt/php:acquia-latest
+# Insert here your target image
+FROM ciandt/php:acquia-2021-04-12-php7.4
 
 # installs required package
 RUN apt-get update \
@@ -153,8 +159,8 @@ RUN apt-get update \
                 make
 
 # defines Composer and Drush versions
-ENV COMPOSER_VERSION 1.2.1
-ENV DRUSH_VERSION 8.1.3
+ENV COMPOSER_VERSION 2.0.12
+ENV DRUSH_VERSION 8.4.2
 
 # installs Drush
 RUN cd /root/ciandt \
@@ -184,7 +190,8 @@ VIRTUAL_HOST=mySite.local
 ##### [__app/php/Dockerfile__](#dockerfile)
 
 ```
-FROM ciandt/php:acquia-latest
+# Insert here your target image
+FROM ciandt/php:acquia-2021-04-12-php7.4
 
 # installs required package
 RUN apt-get update \
@@ -194,8 +201,8 @@ RUN apt-get update \
                 make
 
 # defines Composer and Drush versions
-ENV COMPOSER_VERSION 1.2.1
-ENV DRUSH_VERSION 8.1.3
+ENV COMPOSER_VERSION 2.0.12
+ENV DRUSH_VERSION 8.4.2
 
 # installs Drush
 RUN cd /root/ciandt \
